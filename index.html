@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>ToonFree</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background: black;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+    }
+    .banner {
+      background: #222;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: yellow;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 15px;
+    }
+    .card {
+      background: #1a1a1a;
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .card:hover {
+      background: #333;
+    }
+    .thumb {
+      background: #444;
+      height: 120px;
+      margin-bottom: 5px;
+    }
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-box {
+      background: white;
+      color: black;
+      padding: 20px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>🔥 TOONFREE</header>
+
+<div class="banner">
+  ⚠️ 우회 접속 중... 광고 차단 시 이용 불가
+</div>
+
+<div class="grid">
+  <div class="card" onclick="showPopup()">
+    <div class="thumb"></div>
+    웹툰 제목 1
+  </div>
+  <div class="card" onclick="showError()">
+    <div class="thumb"></div>
+    웹툰 제목 2
+  </div>
+  <div class="card" onclick="showPopup()">
+    <div class="thumb"></div>
+    웹툰 제목 3
+  </div>
+  <div class="card" onclick="showError()">
+    <div class="thumb"></div>
+    웹툰 제목 4
+  </div>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h3>⚠️ 성인 인증 필요</h3>
+    <p>이 콘텐츠는 19세 이상만 이용 가능합니다.</p>
+    <button onclick="closePopup()">닫기</button>
+  </div>
+</div>
+
+<script>
+  function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function showError() {
+    alert("🚫 삭제된 콘텐츠입니다.");
+  }
+
+  // 콘솔에 가짜 로그 (촬영용)
+  console.log("ERROR 403: 접근 차단됨");
+  console.log("Bypass attempt detected...");
+</script>
+
+</body>
+</html>
