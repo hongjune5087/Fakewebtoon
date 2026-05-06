@@ -180,14 +180,65 @@
 
 <body>
 
-<nav>
-  <a href="#">홈</a>
+<nav class="menu">
+  <a href="#" class="active">홈</a>
   <a href="#">인기</a>
   <a href="#">완결</a>
   <a href="#">랭킹</a>
-  <a href="#" onclick="openUpload()">업로드</a>
+  <a href="#" class="upload" onclick="openUpload()">업로드</a>
   <a href="#">로그인</a>
 </nav>
+
+<style>
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 24px;
+    background: #111;
+    border-radius: 12px;
+  }
+
+  .menu a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.2s;
+    position: relative;
+  }
+
+  .menu a:hover {
+    color: white;
+  }
+
+  .menu a.active {
+    color: white;
+  }
+
+  .menu a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .menu .upload {
+    margin-left: auto;
+    padding: 6px 14px;
+    background: #2d7df6;
+    color: white;
+    border-radius: 8px;
+  }
+
+  .menu .upload:hover {
+    transform: translateY(-1px);
+  }
+</style>
 
 <div class="notice">
   ※ 이 페이지는 불법 사이트가 아닙니다. 안심 하시고 사용해 주세요 ~~
