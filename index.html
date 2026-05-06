@@ -4,6 +4,49 @@
   <meta charset="UTF-8">
   <title>Webtoon Demo</title>
 
+<script>
+  function openUpload() {
+    document.getElementById("uploadPopup").style.display = "flex";
+  }
+
+  function closeUpload() {
+    document.getElementById("uploadPopup").style.display = "none";
+  }
+
+  function uploadWebtoon() {
+    const title = document.getElementById("titleInput").value;
+    const file = document.getElementById("fileInput").files[0];
+
+    if (!title || !file) {
+      alert("제목과 이미지를 모두 입력하세요.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      const grid = document.querySelector(".grid");
+
+      const card = document.createElement("div");
+      card.className = "card";
+      card.onclick = showPopup;
+
+      card.innerHTML = `
+        <div class="thumb">
+          <img src="${e.target.result}">
+        </div>
+        <div class="title">${title}</div>
+      `;
+
+      grid.prepend(card); // 맨 앞에 추가
+    };
+
+    reader.readAsDataURL(file);
+
+    closeUpload();
+  }
+</script>
+  
   <style>
     body {
       margin: 0;
@@ -102,6 +145,20 @@
       justify-content: center;
       align-items: center;
       z-index: 10;
+
+      <div class="popup" id="uploadPopup">
+  <div class="popup-box">
+    <h3>웹툰 업로드</h3>
+    
+    <input type="text" id="titleInput" placeholder="제목 입력" style="width:100%; margin-bottom:10px;">
+    
+    <input type="file" id="fileInput" accept="image/*">
+
+    <br><br>
+    <button onclick="uploadWebtoon()">업로드</button>
+    <button onclick="closeUpload()">닫기</button>
+  </div>
+</div>
     }
 
     .popup-box {
@@ -123,16 +180,14 @@
 
 <body>
 
-<header>
-  <div class="logo">🔥 Webtoon</div>
-  <nav>
-    <a href="#">홈</a>
-    <a href="#">인기</a>
-    <a href="#">완결</a>
-    <a href="#">랭킹</a>
-    <a href="#">로그인</a>
-  </nav>
-</header>
+<nav>
+  <a href="#">홈</a>
+  <a href="#">인기</a>
+  <a href="#">완결</a>
+  <a href="#">랭킹</a>
+  <a href="#" onclick="openUpload()">업로드</a>
+  <a href="#">로그인</a>
+</nav>
 
 <div class="notice">
   ※ 이 페이지는 불법 사이트가 아닙니다. 안심 하시고 사용해 주세요 ~~
