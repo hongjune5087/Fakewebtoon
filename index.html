@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Fake WebToon</title>
+  <title>Webtoon Demo</title>
 
   <style>
     body {
@@ -15,9 +15,36 @@
     header {
       background: black;
       padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: red;
       font-size: 20px;
       font-weight: bold;
+    }
+
+    /* 메뉴 */
+    nav a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
       color: red;
+    }
+
+    /* 안내 배너 (중요) */
+    .notice {
+      background: #330000;
+      color: #ffaaaa;
+      text-align: center;
+      padding: 8px;
+      font-size: 13px;
     }
 
     .banner {
@@ -36,7 +63,6 @@
       padding: 15px;
     }
 
-    /* 카드 */
     .card {
       cursor: pointer;
       transition: transform 0.2s;
@@ -49,7 +75,7 @@
     /* 썸네일 */
     .thumb {
       width: 100%;
-      aspect-ratio: 2 / 3;   /* 웹툰 비율 */
+      aspect-ratio: 2 / 3;
       overflow: hidden;
       border-radius: 8px;
       background: #444;
@@ -58,10 +84,9 @@
     .thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;     /* 핵심 */
+      object-fit: cover;
     }
 
-    /* 제목 */
     .title {
       margin-top: 6px;
       font-size: 14px;
@@ -76,6 +101,7 @@
       display: none;
       justify-content: center;
       align-items: center;
+      z-index: 10;
     }
 
     .popup-box {
@@ -84,12 +110,12 @@
       padding: 20px;
       text-align: center;
       border-radius: 10px;
-      width: 250px;
+      width: 260px;
     }
 
     button {
       margin-top: 10px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       cursor: pointer;
     }
   </style>
@@ -97,10 +123,23 @@
 
 <body>
 
-<header>🔥 Fake Webtoon</header>
+<header>
+  <div class="logo">🔥 Webtoon</div>
+  <nav>
+    <a href="#">홈</a>
+    <a href="#">인기</a>
+    <a href="#">완결</a>
+    <a href="#">랭킹</a>
+    <a href="#">로그인</a>
+  </nav>
+</header>
+
+<div class="notice">
+  ※ 이 페이지는 UCC 촬영용 DEMO입니다 (실제 서비스 아님)
+</div>
 
 <div class="banner">
-  ⚠️ 우회 접속 중... 광고 차단 시 이용 불가
+  ⚠️ 접속 지연 발생 중... 잠시 후 자동 연결됩니다
 </div>
 
 <div class="grid">
@@ -135,11 +174,19 @@
 
 </div>
 
-<!-- 팝업 -->
+<!-- 로그인 유도 팝업 -->
 <div class="popup" id="popup">
   <div class="popup-box">
-    <p>읽으려면 로그인 하세요.</p>
+    <p>이용하려면 로그인이 필요합니다</p>
     <button onclick="closePopup()">닫기</button>
+  </div>
+</div>
+
+<!-- 광고 팝업 -->
+<div class="popup" id="adPopup">
+  <div class="popup-box">
+    <p>📢 광고 시청 후 이용 가능합니다</p>
+    <button onclick="closeAd()">닫기</button>
   </div>
 </div>
 
@@ -153,12 +200,23 @@
   }
 
   function showError() {
-    alert("읽으려면 로그인 하세요.");
+    alert("로그인이 필요합니다.");
   }
 
-  // 촬영용 콘솔 로그
-  console.log("ERROR 403: 접근 차단됨");
-  console.log("Bypass attempt detected...");
+  function showAd() {
+    document.getElementById("adPopup").style.display = "flex";
+  }
+
+  function closeAd() {
+    document.getElementById("adPopup").style.display = "none";
+  }
+
+  // 3초 후 광고 등장
+  window.onload = function() {
+    setTimeout(showAd, 3000);
+  };
+
+  console.log("DEMO MODE ACTIVE");
 </script>
 
 </body>
