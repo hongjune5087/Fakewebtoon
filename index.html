@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fake WebToon</title>
+
   <style>
     body {
       margin: 0;
@@ -10,6 +11,7 @@
       color: white;
       font-family: Arial, sans-serif;
     }
+
     header {
       background: black;
       padding: 15px;
@@ -17,6 +19,7 @@
       font-weight: bold;
       color: red;
     }
+
     .banner {
       background: #222;
       text-align: center;
@@ -24,63 +27,74 @@
       font-size: 14px;
       color: yellow;
     }
+
+    /* 그리드 */
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 15px;
       padding: 15px;
     }
-    .card {
-  width: 200px;
-}
 
-.card img {
-  width: 100%;
-  height: 280px;      /* 카드 썸네일 높이 고정 */
-  object-fit: cover;  /* 핵심: 비율 유지 + 넘치는 부분 자름 */
-  border-radius: 8px;
-}
+    /* 카드 */
+    .card {
+      cursor: pointer;
+      transition: transform 0.2s;
     }
+
     .card:hover {
-      background: #333;
+      transform: scale(1.05);
     }
+
+    /* 썸네일 */
     .thumb {
+      width: 100%;
+      aspect-ratio: 2 / 3;   /* 웹툰 비율 */
+      overflow: hidden;
+      border-radius: 8px;
       background: #444;
-      height: 120px;
-      margin-bottom: 5px;
     }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;     /* 핵심 */
+    }
+
+    /* 제목 */
+    .title {
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    /* 팝업 */
     .popup {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       display: none;
       justify-content: center;
       align-items: center;
     }
+
     .popup-box {
       background: white;
       color: black;
       padding: 20px;
       text-align: center;
+      border-radius: 10px;
+      width: 250px;
     }
+
     button {
       margin-top: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
     }
-    .thumb {
-  background: #444;
-  height: 120px;
-  margin-bottom: 5px;
-  overflow: hidden; /* 넘치는 부분 숨김 */
-}
-
-.thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 카드 꽉 채우기 (일부 잘릴 수 있음) */
-}
   </style>
 </head>
+
 <body>
 
 <header>🔥 Fake Webtoon</header>
@@ -90,35 +104,38 @@
 </div>
 
 <div class="grid">
+
   <div class="card" onclick="showPopup()">
-    <div class="thumb"></div>
-     <img src="webtoon3.jpg">
+    <div class="thumb">
+      <img src="webtoon3.jpg">
     </div>
-    유완이의 하루
+    <div class="title">유완이의 하루</div>
   </div>
 
   <div class="card" onclick="showError()">
-    <div class="thumb"></div>
-     <img src="webtoon4.png">
+    <div class="thumb">
+      <img src="webtoon4.png">
     </div>
-    좋은 사랑이었다
+    <div class="title">좋은 사랑이었다</div>
   </div>
 
   <div class="card" onclick="showPopup()">
     <div class="thumb">
       <img src="webtoon2.jpg">
     </div>
-    이등병의 하루
+    <div class="title">이등병의 하루</div>
   </div>
 
   <div class="card" onclick="showPopup()">
     <div class="thumb">
-      <img src="wabtoon1.png"> <!-- 오타도 수정 추천 -->
+      <img src="webtoon1.png">
     </div>
-    야르한 인생
+    <div class="title">야르한 인생</div>
   </div>
+
 </div>
 
+<!-- 팝업 -->
 <div class="popup" id="popup">
   <div class="popup-box">
     <p>읽으려면 로그인 하세요.</p>
@@ -136,10 +153,10 @@
   }
 
   function showError() {
-    alert("읽으려먼 로그인 하세요.");
+    alert("읽으려면 로그인 하세요.");
   }
 
-  // 콘솔에 가짜 로그 (촬영용)
+  // 촬영용 콘솔 로그
   console.log("ERROR 403: 접근 차단됨");
   console.log("Bypass attempt detected...");
 </script>
